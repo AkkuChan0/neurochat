@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "NeuroChat"
+rootProject.name = "NeuroChat2"
 include(":app")

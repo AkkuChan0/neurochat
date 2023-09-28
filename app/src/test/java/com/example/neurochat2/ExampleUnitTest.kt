@@ -1,4 +1,4 @@
-package com.example.neurochat
+package com.example.neurochat2
 
 import org.junit.Test
 
