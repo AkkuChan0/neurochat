@@ -42,10 +42,10 @@ class OpenBot(val messages: RecyclerView) {
         )
     }
 
-    private fun addMessageSystem(prompt: String) {
+    private fun addMessageAssistant(prompt: String) {
         context.add(
             ChatMessage(
-                role = ChatRole.System,
+                role = ChatRole.Assistant,
                 content = prompt
             )
         )
@@ -71,7 +71,7 @@ class OpenBot(val messages: RecyclerView) {
 
             val completion: ChatCompletion = openAI.chatCompletion(chatCompletionRequest)
 
-            completion.choices[0].message.content?.let { this.addMessageSystem(it) }
+            completion.choices[0].message.content?.let { this.addMessageAssistant(it) }
 
             nameMessages.add("Нейро")
             listMessages.add(completion.choices[0].message.content.toString())
@@ -85,11 +85,21 @@ class OpenBot(val messages: RecyclerView) {
         }
     }
 
-    public fun getContext(): MutableList<String> {
+    fun getContext(): MutableList<String> {
         var _tempContext: MutableList<String> = mutableListOf()
         for (_temp in context) {
             _temp.content?.let { _tempContext.add(it) }
         }
         return _tempContext
+    }
+
+    fun setCharacter(prompt: String) {
+        context.clear()
+        context.add(
+            ChatMessage(
+                role = ChatRole.System,
+                content = prompt
+            )
+        )
     }
 }
