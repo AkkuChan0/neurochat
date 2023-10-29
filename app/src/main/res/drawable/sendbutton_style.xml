@@ -10,7 +10,7 @@
         android:bottom="0dp"
         />
     <size
-        android:width="270dp"
+        android:width="60dp"
         android:height="60dp"
         />
     <solid
