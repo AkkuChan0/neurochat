@@ -1,20 +1,23 @@
 package com.example.neurochat2
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.launch
 
+lateinit var bot: OpenBot
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var messageHistory: RecyclerView
     private lateinit var messageBox: EditText
-    private lateinit var bot: OpenBot
     private lateinit var itemMessage: MutableList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +40,12 @@ class MainActivity : AppCompatActivity() {
             indicateNeuro.text = ""
         }
         messageBox.text.clear()
+    }
+
+    fun clearHistory(view: View) {
+        bot.clearMessage()
+        Toast.makeText(applicationContext, "Чат очищен", Toast.LENGTH_SHORT).show()
+
     }
 
 }

@@ -3,20 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/textbox_style"
+    android:layout_marginBottom="5dp">
 
     <TextView
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="1213"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"/>
     <TextView
         android:id="@+id/userMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="24324"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="-6dp"
+        android:layout_marginEnd="25dp"
+        android:text="24324kjbvhiyvgcgkuvyckgucgkuvcluycuylcyucgtuk"
+        android:layout_marginBottom="20dp"/>
 
 </LinearLayout>

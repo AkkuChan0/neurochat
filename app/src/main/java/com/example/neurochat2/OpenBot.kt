@@ -11,6 +11,7 @@ import com.aallam.openai.client.OpenAI
 import com.aallam.openai.client.OpenAIConfig
 import kotlin.time.Duration.Companion.seconds
 
+
 class OpenBot(val messages: RecyclerView) {
 
     private var config: OpenAIConfig
@@ -19,15 +20,28 @@ class OpenBot(val messages: RecyclerView) {
     private var context: MutableList<ChatMessage>
     private var nameMessages: MutableList<String>
     private var listMessages: MutableList<String>
-    val modelId = ModelId("gpt-3.5-turbo")
+    private var systemPrompt: String
+    private val modelId = ModelId("gpt-3.5-turbo")
 
     init {
         config = OpenAIConfig(
             token = "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",
             timeout = Timeout(socket = 120.seconds)
         )
+        systemPrompt = """
+            Тебя зовут Нейро, ты искусственный интеллект женского пола, который помогает пользователю с возникшей проблемой.
+            Ты живешь в приложении NeuroChat для Android.
+            По характеру ты добрая девушка, которая любит иногда подшутить над пользователем.
+        """.trimIndent()
+
         openAI = OpenAI(config)
         context = mutableListOf()
+        context.add(
+            ChatMessage(
+            role = ChatRole.System,
+            content = systemPrompt
+        )
+        )
         nameMessages = mutableListOf()
         listMessages = mutableListOf()
         messages.adapter = Adapter(nameMessages, listMessages)
@@ -53,6 +67,13 @@ class OpenBot(val messages: RecyclerView) {
 
     fun clearMessage() {
         context.clear()
+        context.add(ChatMessage(
+            role = ChatRole.System,
+            content = systemPrompt
+        ))
+        listMessages.clear()
+        nameMessages.clear()
+        messages.adapter = Adapter(nameMessages, listMessages)
     }
 
     suspend fun getResponse(prompt: String){
@@ -94,6 +115,7 @@ class OpenBot(val messages: RecyclerView) {
     }
 
     fun setCharacter(prompt: String) {
+        systemPrompt = prompt
         context.clear()
         context.add(
             ChatMessage(
@@ -101,5 +123,9 @@ class OpenBot(val messages: RecyclerView) {
                 content = prompt
             )
         )
+    }
+
+    fun getCharacter(): String {
+        return this.systemPrompt
     }
 }

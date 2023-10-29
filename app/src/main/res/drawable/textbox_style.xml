@@ -11,7 +11,6 @@
         />
     <size
         android:width="270dp"
-        android:height="60dp"
         />
     <solid
         android:color="?attr/colorPrimaryVariant"/>

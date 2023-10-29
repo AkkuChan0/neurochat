@@ -20,11 +20,22 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.NeuroChat2.PopupOverlay">
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="NeuroChat"
                 android:textSize="26dp"
                 android:textColor="@color/black"/>
+
+            <ImageButton
+                android:id="@+id/preferences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="15dp"
+                android:background="@drawable/sendbutton_style"
+                android:backgroundTint="#E6F2D7"
+                android:onClick="clearHistory"
+                android:src="@android:drawable/ic_menu_delete" />
 
         </androidx.appcompat.widget.Toolbar>
 
